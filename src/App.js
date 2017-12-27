@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/v1/facts', {
+    fetch('https://student-example-api.herokuapp.com/v1/facts', {
       method: 'get'
     }).then(resp => resp.json())
       .then(json => this.setState({
@@ -28,28 +28,6 @@ class App extends React.Component {
   }
 
   handleSubmit() {
-    fetch('http://localhost:3001/v1/facts', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        fact: {
-          text: this.state.newFact
-        }
-      })
-    }).then(resp => resp.json())
-      .then(json => {
-        if (json.errors) return alert(JSON.stringify(json.errors))
-        this.setState({
-          newFact: '',
-          facts: [
-            ...this.state.facts,
-            json.fact
-          ],
-        })
-      })
   }
 
   render() {
